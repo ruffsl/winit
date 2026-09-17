@@ -263,6 +263,8 @@ rustix = { version = "0.38.4", default-features = false, features = [
     "system",
     "thread",
     "process",
+    "event",
+    "pipe",
 ] }
 sctk = { package = "smithay-client-toolkit", version = "0.20.0", default-features = false, features = [
     "calloop",
