@@ -86,7 +86,13 @@ cfg_aliases = "0.2.1"
 [dependencies]
 bitflags = "2"
 cursor-icon = "1.1.0"
-dpi = { version = "0.1.1", path = "dpi" }
+# NOT a path dep, deliberately: `cargo publish` strips the path, so the
+# published crate resolves `dpi` from the registry and unifies with every other
+# consumer of it. A path dep here is a SECOND `dpi` in a consumer's lock — the
+# `[patch.crates-io]` that installs this fork drags the in-tree copy in with it,
+# and `winit::dpi::Position` then stops being the `dpi::Position` muda takes, on
+# macOS and Windows only, where no gate in the AirWare tree looks.
+dpi = "0.1.1"
 rwh_04 = { package = "raw-window-handle", version = "0.4", optional = true }
 rwh_05 = { package = "raw-window-handle", version = "0.5.2", features = [
     "std",
